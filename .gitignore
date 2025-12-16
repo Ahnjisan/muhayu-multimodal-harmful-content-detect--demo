@@ -55,7 +55,6 @@ venv311/
 logs/
 
 # Specific text files to ignore
-DEMO 실행법.txt
 DEMO.txt
 
 # OS
