@@ -1048,10 +1048,8 @@ def create_interface():
                     - **구성 요소**: {', '.join(model_info['video_model']['components'])}
                     - **분류 임계값**: {model_info['video_model']['threshold']}
                     
-                    ### 공통 모델
-                    - **YOLO 모델**: {model_info['yolo_model']}
-                    - **CLIP 모델**: {model_info['clip_model']}
-                    - **실행 디바이스**: {model_info['device']}
+                    ### 실행 환경
+                    - **디바이스**: {model_info['device']}
                     """
                 )
         
