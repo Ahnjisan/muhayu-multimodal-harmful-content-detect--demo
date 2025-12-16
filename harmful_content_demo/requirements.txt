@@ -1,0 +1,36 @@
+# PyTorch + GPU (CUDA 12.1)
+torch==2.5.1+cu121
+torchvision==0.20.1+cu121
+torchaudio==2.5.1+cu121
+
+# Gradio (최신 안정 버전)
+gradio==6.0.0
+
+# Ultralytics YOLO
+ultralytics==8.3.231
+
+# 이미지/영상 처리
+opencv-python==4.12.0.88
+Pillow==11.3.0
+numpy==2.2.6
+ftfy==6.3.1
+regex==2025.11.3
+
+# PyTorchVideo (비디오 분석용)
+fvcore>=0.1.5
+iopath>=0.1.9
+pytorchvideo
+
+# OpenAI CLIP
+git+https://github.com/openai/CLIP.git
+
+# Transformers (임영재님 비디오 모델용: ViT, CLIP)
+transformers>=4.40.0
+
+# 데이터 분석 및 시각화
+scikit-learn>=1.5.0  # numpy 2.x 지원을 위해 1.5.0 이상 필요
+matplotlib==3.10.7
+seaborn==0.12.2
+
+# 편의 패키지
+tqdm==4.67.1

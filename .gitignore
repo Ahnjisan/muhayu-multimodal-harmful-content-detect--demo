@@ -54,9 +54,6 @@ venv311/
 *.log
 logs/
 
-# Text files
-*.txt
-
 # OS
 .DS_Store
 .DS_Store?
