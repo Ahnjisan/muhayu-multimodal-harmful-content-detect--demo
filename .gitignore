@@ -54,6 +54,10 @@ venv311/
 *.log
 logs/
 
+# Specific text files to ignore
+DEMO 실행법.txt
+DEMO.txt
+
 # OS
 .DS_Store
 .DS_Store?
