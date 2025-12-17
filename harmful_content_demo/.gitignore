@@ -1,0 +1,44 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+venv/
+env/
+ENV/
+
+# 모델 가중치 (용량 큰 파일)
+weights/*.pth
+weights/*.pt
+!weights/.gitkeep
+
+# 데이터셋
+*.json
+data/
+dataset/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Gradio
+flagged/
+gradio_cached_examples/
+
+# 로그
+*.log
+logs/
+
+# 임시 파일
+tmp/
+temp/
+*.tmp
+

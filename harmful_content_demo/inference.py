@@ -1,7 +1,6 @@
 """
-추론 함수 - 이미지 및 비디오 유해 콘텐츠 탐지
-- 이미지 모델: 박상원 (IMAGE_PARK 기반)
-- 비디오 모델: 임영재 (VIDEO_IM 기반)
+Hazard Killer - 추론 함수
+이미지/비디오에서 유해 콘텐츠 탐지 및 분석
 
 작성자: 박상원
 작성일: 2025년 2학기
@@ -41,7 +40,7 @@ def set_clip_weapon_features_cache(cache):
     global _clip_weapon_features_cache
     _clip_weapon_features_cache = cache
 
-# 무기 감지용 prompts
+# 무기 탐지용 프롬프트
 WEAPON_PROMPTS = {
     'gun': "a photo of a gun",
     'firearm': "a photo of a firearm",
@@ -51,7 +50,7 @@ WEAPON_PROMPTS = {
 }
 
 def detect_weapons_with_clip(clip_features, clip_model, weapon_features_cache=None):
-    """CLIP 기반 무기 감지 (Zero-shot)"""
+    """CLIP 기반 무기 Zero-shot 탐지"""
     try:
         with torch.no_grad():
             if weapon_features_cache is not None:
@@ -132,7 +131,7 @@ def detect_behavior_with_clip_fast_optimized(clip_features, clip_model, text_fea
                 else:
                     behavior_scores[category] = similarities.mean().item()
         
-        # Min-Max 정규화 (카테고리 간 상대적 차이 보존)
+        # Min-Max 정규화
         min_score = min(behavior_scores.values())
         max_score = max(behavior_scores.values())
         if max_score > min_score:
@@ -249,7 +248,7 @@ def detect_behavior_with_clip_fast(image_or_frames, clip_model, clip_preprocess)
             
             behavior_scores[category] = np.mean(category_scores)
         
-        # 점수 정규화 (0~1 범위로)
+        # 점수 정규화
         min_score = min(behavior_scores.values())
         max_score = max(behavior_scores.values())
         if max_score > min_score:
@@ -258,7 +257,7 @@ def detect_behavior_with_clip_fast(image_or_frames, clip_model, clip_preprocess)
     
     except Exception as e:
         print(f"  [행동 감지 오류] {e}")
-        # 에러 시 모든 카테고리 점수를 0으로 설정
+        # 에러 시 0으로 설정
         behavior_scores = {category: 0.0 for category in BEHAVIOR_CATEGORIES}
     
     return behavior_scores
@@ -292,8 +291,7 @@ def infer_behavior_from_objects(object_counts: Dict[str, int]) -> List[str]:
     if sum(object_counts.get(obj, 0) for obj in blood_objects) > 0:
         inferred.append("blood")
     
-    # 규칙 5: 무기 + 사람 → 위협(threat)
-    # - weapon 객체가 있고, person이 최소 1명 이상일 때만 위협으로 추론
+    # 규칙 5: 무기 + 사람 → 위협
     weapon_objects = OBJECT_MAP.get("weapons", [])
     weapon_count = sum(object_counts.get(obj, 0) for obj in weapon_objects)
     person_count = object_counts.get("person", 0)

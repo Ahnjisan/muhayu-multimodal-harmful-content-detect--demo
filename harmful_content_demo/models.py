@@ -1,7 +1,6 @@
 """
-모델 클래스 정의 - 유해 콘텐츠 탐지 시스템
-- 이미지 모델: 박상원 (IMAGE_PARK 기반)
-- 비디오 모델: 임영재 (VIDEO_IM 기반)
+Hazard Killer - 모델 정의
+이미지/비디오 분류 모델 및 유해 콘텐츠 카테고리 정의
 
 작성자: 박상원
 작성일: 2025년 2학기
@@ -125,18 +124,10 @@ HARMFUL_BEHAVIORS = BEHAVIOR_CATEGORIES  # 8차원
 
 class HarmfulImageClassifier(nn.Module):
     """
-    유해 이미지 분류 모델 (차원 축소 포함)
-    
-    아키텍처:
-    입력 (540차원) → 차원 축소 (256차원) → MLP → 출력 (1차원, 유해 확률)
+    이미지 유해 콘텐츠 분류 모델
+    YOLO, CLIP, 행동 특징을 결합하여 유해 여부 예측
     """
     def __init__(self, yolo_dim, clip_dim, behavior_dim):
-        """
-        Args:
-            yolo_dim: YOLO 특징 차원 (20)
-            clip_dim: CLIP 특징 차원 (512)
-            behavior_dim: 행동 특징 차원 (8)
-        """
         super().__init__()
         input_dim = yolo_dim + clip_dim + behavior_dim  # 540
         
@@ -161,23 +152,15 @@ class HarmfulImageClassifier(nn.Module):
         )
     
     def forward(self, x):
-        """
-        Args:
-            x: 입력 특징 (batch_size, 540)
-            
-        Returns:
-            output: 유해 확률 (batch_size,)
-        """
+        """입력 특징을 받아 유해 확률 반환"""
         x = self.dimension_reduction(x)
         return self.mlp(x).squeeze()
 
 
 class HarmfulVideoClassifier(nn.Module):
     """
-    유해 비디오 분류 모델 (차원 축소 + Transformer)
-    
-    아키텍처:
-    입력 (32, 940차원) → 차원 축소 (32, 256차원) → Transformer → 시간 평균 풀링 → MLP → 출력 (1차원)
+    비디오 유해 콘텐츠 분류 모델
+    YOLO, CLIP, SlowFast, 행동 특징을 시간축으로 결합하여 예측
     """
     def __init__(self, yolo_dim, clip_dim, slowfast_dim, behavior_dim):
         """

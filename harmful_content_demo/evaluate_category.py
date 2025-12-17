@@ -19,14 +19,14 @@ import clip
 from ultralytics import YOLO
 from pytorchvideo.models.hub import slowfast_r101
 
-# 환경 변수 설정 (최적화)
+# 환경 변수 설정
 os.environ['HF_HUB_DISABLE_SYMLINKS_WARNING'] = '1'
 os.environ['TRANSFORMERS_NO_TF'] = '1'
 
-# GPU 최적화 설정
+# GPU 최적화
 if torch.cuda.is_available():
-    torch.backends.cudnn.benchmark = True  # cuDNN 자동 튜닝
-    torch.set_float32_matmul_precision('high')  # 연산 속도 향상
+    torch.backends.cudnn.benchmark = True
+    torch.set_float32_matmul_precision('high')
 
 from config import (
     IMAGE_MODEL_PATH, VIDEO_MODEL_PATH, YOLO_MODEL_PATH,
@@ -162,7 +162,7 @@ def load_data_from_json():
     """JSON 파일에서 데이터 로드 (세 명의 데이터 모두 포함)"""
     print("\n데이터 로딩 중...")
     
-    # DATA_ROOT 경로 찾기 (현재 위치 기준으로 상위 폴더에서 찾기)
+    # DATA_ROOT 경로 찾기
     current = Path(__file__).parent
     DATA_ROOT = None
     
@@ -174,7 +174,7 @@ def load_data_from_json():
             break
         search_current = search_current.parent
     
-    # 방법 2: 절대 경로로 시도 (원래 위치)
+    # 절대 경로로 시도
     if DATA_ROOT is None:
         abs_paths = [
             Path(r"C:\Users\psw20\OneDrive\바탕 화면\PSW\한국항공대학교_3-2\무하유\Github\무하유_유해콘텐츠_데이터_모델선정"),
@@ -501,8 +501,7 @@ def analyze_by_category(results, data_type="이미지"):
         cat_pred = data['predictions']
         cat_true = data['true_labels']
         
-        # 해당 카테고리에서 유해로 예측된 것 중 실제로 유해인 비율 (Precision)
-        # 실제 유해인 것 중 유해로 예측된 비율 (Recall)
+        # Precision과 Recall 계산
         tp = sum(1 for p, t in zip(cat_pred, cat_true) if p == 1 and t == 1)
         fp = sum(1 for p, t in zip(cat_pred, cat_true) if p == 1 and t == 0)
         fn = sum(1 for p, t in zip(cat_pred, cat_true) if p == 0 and t == 1)
@@ -533,7 +532,7 @@ def analyze_by_category(results, data_type="이미지"):
             'f1': f1
         })
     
-    # 성능 순으로 정렬 (F1 점수 기준)
+    # F1 점수 기준 정렬
     category_metrics.sort(key=lambda x: x['f1'])
     
     # 데이터 불균형 정보 출력
@@ -561,7 +560,7 @@ def analyze_by_category(results, data_type="이미지"):
               f"{metric['tp']:<6} {metric['fp']:<6} {metric['fn']:<6} {metric['tn']:<6} "
               f"{metric['accuracy']:<10.4f} {metric['precision']:<10.4f} {metric['recall']:<10.4f} {metric['f1']:<10.4f}")
     
-    # 가장 성능이 낮은 카테고리 출력 (데이터 불균형 고려)
+    # 가장 성능이 낮은 카테고리 출력
     print("\n" + "=" * 60)
     print("⚠ 성능이 낮은 카테고리 분석")
     print("=" * 60)
@@ -653,7 +652,7 @@ def print_category_summary(category_metrics, data_type="이미지"):
         if metric['f1'] > 0:
             print(f"{i:<6} {metric['label']:<15} {metric['f1']:<10.4f} {metric['precision']:<12.4f} {metric['recall']:<12.4f} {metric['total']:<10}")
     
-    # Bottom 3 성능 (개선 필요)
+    # Bottom 3 성능
     print("\n⚠ 개선이 필요한 카테고리 (Bottom 3):")
     print(f"{'순위':<6} {'카테고리':<15} {'F1':<10} {'Precision':<12} {'Recall':<12} {'데이터 수':<10}")
     print("-" * 80)
