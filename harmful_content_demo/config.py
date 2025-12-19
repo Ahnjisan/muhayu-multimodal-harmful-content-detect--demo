@@ -45,8 +45,8 @@ while search_current.parent != search_current:
 # 절대 경로로 재시도
 if DATA_ROOT is None:
     abs_path = Path(r"C:\Users\psw20\OneDrive\바탕 화면\PSW\한국항공대학교_3-2\무하유\Github\무하유_유해콘텐츠_데이터_모델선정")
-    if abs_path.exists():
-        DATA_ROOT = abs_path
+        if abs_path.exists():
+            DATA_ROOT = abs_path
 
 # 없으면 빈 경로 설정
 if DATA_ROOT is None:

@@ -1563,7 +1563,7 @@ def create_interface():
                     </div>
                 </div>
             </div>
-            """
+                """
             gr.HTML(content_html)
         
         with gr.Column(elem_classes=["card-section"]):
@@ -1632,12 +1632,12 @@ def create_interface():
                             <div class="stats-label" style="font-size: 14px; color: #666; margin-bottom: 5px;">비디오 데이터</div>
                             <div class="stats-value" style="font-size: 24px; font-weight: bold; color: #001B3A;">635개</div>
                             <div class="stats-detail" style="font-size: 12px; color: #666; margin-top: 5px;">유해: 308 (48.5%) / 안전: 327 (51.5%)</div>
-                        </div>
+                            </div>
                         <div class="stats-card" style="text-align: center; padding: 15px; background: white; border-radius: 8px;">
                             <div class="stats-label" style="font-size: 14px; color: #666; margin-bottom: 5px;">전체 데이터</div>
                             <div class="stats-value" style="font-size: 24px; font-weight: bold; color: #001B3A;">1,221개</div>
                             <div class="stats-detail" style="font-size: 12px; color: #666; margin-top: 5px;">유해: 542 (44.4%) / 안전: 679 (55.6%)</div>
-                        </div>
+                            </div>
                     </div>
                 </div>
                 
