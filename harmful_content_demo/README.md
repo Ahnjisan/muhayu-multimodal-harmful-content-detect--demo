@@ -209,7 +209,7 @@ harmful_content_demo/
 **모델 발전 과정 및 실험 기록**: [https://github.com/psw204/harmful-detect-muhayu](https://github.com/psw204/harmful-detect-muhayu)
 
 해당 레포지토리에는 다음 내용이 포함되어 있습니다:
-- 각 팀원의 모델 실험 과정 (박상원, 임영재, 안지산)
+- 각 팀원의 모델 실험 과정 (안지산, 박상원, 임영재)
 - 모델 구조 발전 과정 (final_model1 ~ final_model11)
 - 데이터 수집 및 라벨링 도구
 - 학습 스크립트 및 평가 코드
@@ -220,8 +220,8 @@ harmful_content_demo/
 본 레포지토리는 팀 프로젝트에서 개발된 최종 모델을 활용하여 웹 데모 인터페이스를 구현한 것입니다.
 
 **사용 모델:**
-- **이미지 모델**: 박상원의 final_model11 (YOLO + CLIP + 행동인식, 540차원)
-- **비디오 모델**: 임영재의 Fusion 방식 (CLIP + ViT + SlowFast)
+- **이미지 모델**: final_model11 (YOLO + CLIP + 행동인식, 540차원)
+- **비디오 모델**: Fusion 방식 (CLIP + ViT + SlowFast)
 
 ## 참고사항
 
@@ -231,8 +231,5 @@ harmful_content_demo/
 - 평가 스크립트는 발표 자료용 결과 제공
 
 ---
-
-**작성자**: 박상원  
-**작성일**: 2025년 2학기
 
 © 2025 Hazard Killer
