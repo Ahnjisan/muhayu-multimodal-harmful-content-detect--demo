@@ -220,6 +220,3 @@ DEMO/
 - 모델 가중치 파일은 `harmful_content_demo/weights` 폴더에 있어야 합니다.
 - 상세한 설치 및 사용 방법은 `harmful_content_demo/README.md`를 참고하세요.
 
-## 관련 문서
-
-SW중심대학 산학R&D프로젝트 결과보고서를 확인하려면 [`paper`](paper/) 폴더를 참고하세요.
