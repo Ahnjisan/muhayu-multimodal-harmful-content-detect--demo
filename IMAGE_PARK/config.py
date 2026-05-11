@@ -14,7 +14,7 @@ PROJECT_ROOT = Path(__file__).parent
 current = PROJECT_ROOT
 final_model11_path = None
 while current.parent != current:
-    if current.name == "박상원":
+    if current.name == "안지산":
         potential_path = current / "모델_발전_과정" / "final_model11"
         if potential_path.exists():
             final_model11_path = potential_path
@@ -23,7 +23,7 @@ while current.parent != current:
 
 # 절대 경로로 시도
 if final_model11_path is None:
-    abs_path = Path(r"C:\Users\psw20\OneDrive\바탕 화면\PSW\한국항공대학교_3-2\무하유\Github\박상원\모델_발전_과정\final_model11")
+    abs_path = Path(r"C:\Users\ahnji\OneDrive\바탕 화면\PSW\한국항공대학교\무하유\Github\안지산\모델_발전_과정\final_model11")
     if abs_path.exists():
         final_model11_path = abs_path
 
@@ -48,11 +48,11 @@ while current.name != "무하유_유해콘텐츠_데이터_모델선정" and cur
     current = current.parent
 
 DATA_ROOT = current
-LABELS_FILE = DATA_ROOT / "3_라벨링_파일" / "박상원" / "박상원_labels_categorized.json"
-IMAGE_DIR = DATA_ROOT / "2_실제_수집_데이터" / "박상원" / "이미지"
-SAFE_IMAGE_DIR = DATA_ROOT / "2_실제_수집_데이터" / "박상원" / "안전_이미지"
-VIDEO_DIR = DATA_ROOT / "2_실제_수집_데이터" / "박상원" / "비디오"
-SAFE_VIDEO_DIR = DATA_ROOT / "2_실제_수집_데이터" / "박상원" / "안전_비디오"
+LABELS_FILE = DATA_ROOT / "3_라벨링_파일" / "안지산" / "안지산_labels_categorized.json"
+IMAGE_DIR = DATA_ROOT / "2_실제_수집_데이터" / "안지산" / "이미지"
+SAFE_IMAGE_DIR = DATA_ROOT / "2_실제_수집_데이터" / "안지산" / "안전_이미지"
+VIDEO_DIR = DATA_ROOT / "2_실제_수집_데이터" / "안지산" / "비디오"
+SAFE_VIDEO_DIR = DATA_ROOT / "2_실제_수집_데이터" / "안지산" / "안전_비디오"
 
 DEVICE = 'cuda' if torch.cuda.is_available() else 'cpu'
 
